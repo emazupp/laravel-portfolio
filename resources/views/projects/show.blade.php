@@ -5,7 +5,18 @@
 @section('content')
 <div class="container mt-4">
     <h2 class="mb-4">Dettaglio Progetto</h2>
-    
+
+    <div class="button-container d-flex gap-3">
+        <a class="btn btn-warning" href="{{route('projects.edit', $project->id)}}">Modifica</a>
+
+        <form action="{{route('projects.destroy', $project->id)}}" method="POST">
+            @csrf
+            @method("DELETE")
+            
+            <input class="btn btn-danger" type="submit" value="Elimina">
+        </form>
+    </div>
+
     <div class="card">
         <div class="card-header">
             <h3>{{ $project->project_name }}</h3>
