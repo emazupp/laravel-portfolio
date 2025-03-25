@@ -23,7 +23,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view("projects.create");
+        $types = Type::all();
+        return view("projects.create", compact("types"));
     }
 
     /**
@@ -43,6 +44,7 @@ class ProjectController extends Controller
         $newProject->role = $data['role'];
         $newProject->image_url = $data['image_url'];
         $newProject->status = $data['status'];
+        $newProject->type_id = $data['type_id'];
 
 
         $newProject->save();
