@@ -28,6 +28,7 @@
             <p><strong>Tecnologie Utilizzate:</strong> {{ $project->technologies }}</p>
             <p><strong>Link al Progetto:</strong> <a href="{{ $project->link }}">{{ $project->link }}</a></p>
             <p><strong>Stato:</strong> {{ $project->status }}</p>
+            <p><strong>Categoria:</strong> {{ $project->type->name }}</p>
             <p><strong>Immagine Anteprima:</strong></p>
             <img src="{{ $project->image_url }}" alt="Anteprima del Progetto" class="img-fluid">
         </div>
