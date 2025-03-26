@@ -3,7 +3,10 @@
 @section("title", "Creazione nuovo progetto")
 
 @section('content')
-        <div class="d-flex flex-column justify-content-center w-50">
+    <div class="container">
+
+    
+        <div class="d-flex flex-column justify-content-center">
         <form action="{{route('projects.store')}}" method="POST">
             @csrf
             
@@ -17,9 +20,14 @@
                 <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
 
-            <div class="mb-3">
-                <label for="technologies" class="form-label">Tecnologie</label>
-                <input type="text" class="form-control" id="technologies" name="technologies" required>
+            Tecnologie:
+            <div class="mb-3 d-flex">
+                @foreach ($technologies as $technology)
+                    <div class="me-2">
+                        <input type="checkbox" name="technologies[]" value="{{$technology->id}}" id="technology-{{$technology->id}}">
+                        <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                    </div>
+                @endforeach
             </div>
 
             <div class="mb-3">
@@ -52,7 +60,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="type_id" class="form-label">Stato</label>
+                <label for="type_id" class="form-label">Tipologia</label>
                 <select class="form-control" id="type_id" name="type_id" required>
                     @foreach ($types as $type)
                         <option value={{$type->id}}>{{$type->name}}</option>
@@ -63,5 +71,5 @@
             <button type="submit" class="btn btn-primary">Aggiungi progetto</button>
         </form>
     </div>
- 
+    </div>
 @endsection

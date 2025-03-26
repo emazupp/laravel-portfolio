@@ -18,10 +18,7 @@
                 <textarea class="form-control" id="description" name="description" rows="3" required>{{$project->description}}</textarea>
             </div>
 
-            <div class="mb-3">
-                <label for="technologies" class="form-label">Tecnologie</label>
-                <input type="text" class="form-control" id="technologies" name="technologies" value="{{$project->technologies}}" required>
-            </div>
+
 
             <div class="mb-3">
                 <label for="launch_date" class="form-label">Data di Lancio</label>
@@ -53,7 +50,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="type_id" class="form-label">Stato</label>
+                <label for="type_id" class="form-label">Tipologia</label>
                 <select class="form-control" id="type_id" name="type_id" required>
                     @foreach ($types as $type)
                         <option value={{$type->id}} {{$type->id == $project->type_id ? "selected" : ""}}>{{$type->name}}</option>

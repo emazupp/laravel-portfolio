@@ -18,7 +18,6 @@ class ProjectSeeder extends Seeder
             $newProject = new Project();
             $newProject->project_name = $faker->sentence(3);
             $newProject->description = $faker->paragraph();
-            $newProject->technologies = implode(', ', $faker->words(5));
             $newProject->launch_date = $faker->date();
             $newProject->git_link = $faker->url();
             $newProject->role = $faker->word();

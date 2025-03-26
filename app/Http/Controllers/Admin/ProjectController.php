@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view("projects.create", compact("types"));
+        $technologies = Technology::all();
+        return view("projects.create", compact("types", "technologies"));
     }
 
     /**
@@ -33,12 +35,12 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
         $newProject = new Project();
 
         $newProject = new Project();
         $newProject->project_name = $data['project_name'];
         $newProject->description = $data['description'];
-        $newProject->technologies = $data['technologies'];
         $newProject->launch_date = $data['launch_date'];
         $newProject->git_link = $data['git_link'];
         $newProject->role = $data['role'];
@@ -46,8 +48,9 @@ class ProjectController extends Controller
         $newProject->status = $data['status'];
         $newProject->type_id = $data['type_id'];
 
-
         $newProject->save();
+
+        $newProject->technologies()->attach($data["technologies"]);
 
         return redirect()->route("projects.show", $newProject);
     }
@@ -77,7 +80,6 @@ class ProjectController extends Controller
         $data = $request->all();
         $project->project_name = $data['project_name'];
         $project->description = $data['description'];
-        $project->technologies = $data['technologies'];
         $project->launch_date = $data['launch_date'];
         $project->git_link = $data['git_link'];
         $project->role = $data['role'];
