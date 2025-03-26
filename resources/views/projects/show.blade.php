@@ -25,7 +25,17 @@
         <div class="card-body">
             <p><strong>Descrizione:</strong> {{ $project->description }}</p>
             <p><strong>Data Lancio:</strong> {{ $project->launch_date }}</p>
-            <p><strong>Tecnologie Utilizzate:</strong> {{ $project->technologies }}</p>
+
+            <div class="technologies-container">
+                <strong>Tecnologie Utilizzate:</strong>
+                @forelse ($project->technologies as $technology)
+                    <span  pan class="badge" style="background-color: {{$technology->color}}">{{$technology->name}}</span>
+                @empty
+                    Nessuna tecnologia
+                @endforelse
+            </div>
+            
+            
             <p><strong>Link al Progetto:</strong> <a href="{{ $project->link }}">{{ $project->link }}</a></p>
             <p><strong>Stato:</strong> {{ $project->status }}</p>
             <p><strong>Categoria:</strong> {{ $project->type->name }}</p>

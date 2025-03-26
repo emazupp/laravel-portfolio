@@ -20,8 +20,8 @@
                 <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
 
-            Tecnologie:
             <div class="mb-3 d-flex">
+                <strong>Tecnologie:</strong>
                 @foreach ($technologies as $technology)
                     <div class="me-2">
                         <input type="checkbox" name="technologies[]" value="{{$technology->id}}" id="technology-{{$technology->id}}">
